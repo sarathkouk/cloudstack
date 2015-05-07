@@ -259,8 +259,10 @@ public class SolidFirePrimaryDataStoreDriver implements PrimaryDataStoreDriver {
         Integer hypervisorSnapshotReserve = volume.getHypervisorSnapshotReserve();
 
         if (hypervisorSnapshotReserve != null) {
-            if (hypervisorSnapshotReserve < 50) {
-                hypervisorSnapshotReserve = 50;
+            int minimumHypervisorSnapshotReserve = 10;
+
+            if (hypervisorSnapshotReserve < minimumHypervisorSnapshotReserve) {
+                hypervisorSnapshotReserve = minimumHypervisorSnapshotReserve;
             }
 
             volumeSize += volumeSize * (hypervisorSnapshotReserve / 100f);

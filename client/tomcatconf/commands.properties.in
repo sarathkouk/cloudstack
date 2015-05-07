@@ -663,6 +663,20 @@ getApiLimit=15
 resetApiLimit=1
 
 #### API SolidFire Service Command
+createReferenceToSolidFireCluster=1
+createSolidFireVirtualNetwork=1
+deleteReferenceToSolidFireCluster=1
+deleteSolidFireVirtualNetwork=1
+listSolidFireClusters=1
+updateReferenceToSolidFireCluster=1
+updateSolidFireVirtualNetwork=1
+createSolidFireVolume=15
+deleteSolidFireVolume=15
+listSolidFireVirtualNetworks=15
+listSolidFireVolumes=15
+updateSolidFireVolume=15
+
+#### API SolidFire Integration-Testing Service Command
 getSolidFireAccountId=15
 getSolidFireVolumeSize=15
 getSolidFireVolumeAccessGroupId=15

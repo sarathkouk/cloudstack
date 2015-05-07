@@ -29,7 +29,7 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.response.ApiSolidFireVolumeIscsiNameResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.cloudstack.solidfire.ApiSolidFireService;
+import org.apache.cloudstack.solidfire.ApiSolidFireIntgTestService;
 
 @APICommand(name = "getSolidFireVolumeIscsiName", responseObject = ApiSolidFireVolumeIscsiNameResponse.class, description = "Get SolidFire Volume's Iscsi Name",
         requestHasSensitiveInfo = false, responseHasSensitiveInfo = false)
@@ -41,7 +41,7 @@ public class GetSolidFireVolumeIscsiNameCmd extends BaseCmd {
     @Parameter(name = ApiConstants.VOLUME_ID, type = CommandType.STRING, description = "CloudStack Volume UUID", required = true)
     private String volumeUuid;
 
-    @Inject private ApiSolidFireService _apiSolidFireService;
+    @Inject private ApiSolidFireIntgTestService _apiSolidFireIntgTestService;
     @Inject private VolumeDao _volumeDao;
 
     /////////////////////////////////////////////////////
@@ -66,9 +66,11 @@ public class GetSolidFireVolumeIscsiNameCmd extends BaseCmd {
 
     @Override
     public void execute() {
+        s_logger.info(GetSolidFireVolumeIscsiNameCmd.class.getName() + ".execute invoked");
+
         Volume volume = _volumeDao.findByUuid(volumeUuid);
 
-        ApiSolidFireVolumeIscsiNameResponse response = _apiSolidFireService.getSolidFireVolumeIscsiName(volume);
+        ApiSolidFireVolumeIscsiNameResponse response = _apiSolidFireIntgTestService.getSolidFireVolumeIscsiName(volume);
 
         response.setResponseName(getCommandName());
         response.setObjectName("apisolidfirevolumeiscsiname");

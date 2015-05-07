@@ -29,7 +29,7 @@ import org.apache.cloudstack.api.response.ApiSolidFireVolumeIscsiNameResponse;
  * Provide API for SolidFire integration tests
  *
  */
-public interface ApiSolidFireService extends PluggableService {
+public interface ApiSolidFireIntgTestService extends PluggableService {
     public ApiSolidFireAccountIdResponse getSolidFireAccountId(Long csAccountId, Long storagePoolId);
     public ApiSolidFireVolumeSizeResponse getSolidFireVolumeSize(Volume volume, StoragePool storagePool);
     public ApiSolidFireVolumeAccessGroupIdResponse getSolidFireVolumeAccessGroupId(Long csClusterId, Long storagePoolId);

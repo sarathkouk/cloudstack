@@ -27,6 +27,11 @@
                       http://www.springframework.org/schema/context/spring-context-3.0.xsd"
                       >
 
-      <bean id="apiSolidFireIntgTestServiceImpl" class="org.apache.cloudstack.solidfire.ApiSolidFireIntgTestServiceImpl"/>
+      <bean id="sfUtil" class="org.apache.cloudstack.util.solidfire.SfUtil" />
+      <bean id="solidFireManagerImpl" class="org.apache.cloudstack.solidfire.SolidFireManagerImpl" />
+      <bean id="apiSolidFireServiceImpl" class="org.apache.cloudstack.api.solidfire.ApiSolidFireServiceImpl" />
+      <bean id="sfClusterDao" class="org.apache.cloudstack.dataaccess.dao.solidfire.SfClusterDaoImpl" />
+      <bean id="sfVolumeDao" class="org.apache.cloudstack.dataaccess.dao.solidfire.SfVolumeDaoImpl" />
+      <bean id="sfVirtualNetworkDao" class="org.apache.cloudstack.dataaccess.dao.solidfire.SfVirtualNetworkDaoImpl" />
 
 </beans>

@@ -31,7 +31,7 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.response.ApiSolidFireVolumeAccessGroupIdResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.cloudstack.solidfire.ApiSolidFireService;
+import org.apache.cloudstack.solidfire.ApiSolidFireIntgTestService;
 import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 
 @APICommand(name = "getSolidFireVolumeAccessGroupId", responseObject = ApiSolidFireVolumeAccessGroupIdResponse.class, description = "Get the SF Volume Access Group ID",
@@ -45,7 +45,7 @@ public class GetSolidFireVolumeAccessGroupIdCmd extends BaseCmd {
     @Parameter(name = ApiConstants.STORAGE_ID, type = CommandType.STRING, description = "Storage Pool UUID", required = true)
     private String storagePoolUuid;
 
-    @Inject private ApiSolidFireService _apiSolidFireService;
+    @Inject private ApiSolidFireIntgTestService _apiSolidFireIntgTestService;
     @Inject private ClusterDao _clusterDao;
     @Inject private PrimaryDataStoreDao _storagePoolDao;
 
@@ -71,10 +71,12 @@ public class GetSolidFireVolumeAccessGroupIdCmd extends BaseCmd {
 
     @Override
     public void execute() {
+        s_logger.info(GetSolidFireVolumeAccessGroupIdCmd.class.getName() + ".execute invoked");
+
         Cluster cluster = _clusterDao.findByUuid(clusterUuid);
         StoragePool storagePool = _storagePoolDao.findByUuid(storagePoolUuid);
 
-        ApiSolidFireVolumeAccessGroupIdResponse response = _apiSolidFireService.getSolidFireVolumeAccessGroupId(cluster.getId(), storagePool.getId());
+        ApiSolidFireVolumeAccessGroupIdResponse response = _apiSolidFireIntgTestService.getSolidFireVolumeAccessGroupId(cluster.getId(), storagePool.getId());
 
         response.setResponseName(getCommandName());
         response.setObjectName("apisolidfirevolumeaccessgroupid");

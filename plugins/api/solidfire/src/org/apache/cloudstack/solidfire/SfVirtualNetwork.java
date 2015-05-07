@@ -14,7 +14,27 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-package org.apache.cloudstack.storage.datastore.driver;
+package org.apache.cloudstack.solidfire;
 
-public class SolidFireSharedPrimaryDataStoreDriver extends CloudStackPrimaryDataStoreDriverImpl {
+import org.apache.cloudstack.api.Identity;
+import org.apache.cloudstack.api.InternalIdentity;
+
+public interface SfVirtualNetwork extends Identity, InternalIdentity {
+    long getSfId();
+
+    String getName();
+
+    String getTag();
+
+    String getStartIp();
+
+    int getSize();
+
+    String getNetmask();
+
+    String getSvip();
+
+    long getAccountId();
+
+    long getSfClusterId();
 }

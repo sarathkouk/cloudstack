@@ -31,7 +31,7 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.response.ApiSolidFireVolumeSizeResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.cloudstack.solidfire.ApiSolidFireService;
+import org.apache.cloudstack.solidfire.ApiSolidFireIntgTestService;
 import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 
 @APICommand(name = "getSolidFireVolumeSize", responseObject = ApiSolidFireVolumeSizeResponse.class, description = "Get the SF volume size including Hypervisor Snapshot Reserve",
@@ -45,7 +45,7 @@ public class GetSolidFireVolumeSizeCmd extends BaseCmd {
     @Parameter(name = ApiConstants.STORAGE_ID, type = CommandType.STRING, description = "Storage Pool UUID", required = true)
     private String storagePoolUuid;
 
-    @Inject private ApiSolidFireService _apiSolidFireService;
+    @Inject private ApiSolidFireIntgTestService _apiSolidFireIntgTestService;
     @Inject private VolumeDao _volumeDao;
     @Inject private PrimaryDataStoreDao _storagePoolDao;
 
@@ -71,10 +71,12 @@ public class GetSolidFireVolumeSizeCmd extends BaseCmd {
 
     @Override
     public void execute() {
+        s_logger.info(GetSolidFireVolumeSizeCmd.class.getName() + ".execute invoked");
+
         Volume volume = _volumeDao.findByUuid(volumeUuid);
         StoragePool storagePool = _storagePoolDao.findByUuid(storagePoolUuid);
 
-        ApiSolidFireVolumeSizeResponse response = _apiSolidFireService.getSolidFireVolumeSize(volume, storagePool);
+        ApiSolidFireVolumeSizeResponse response = _apiSolidFireIntgTestService.getSolidFireVolumeSize(volume, storagePool);
 
         response.setResponseName(getCommandName());
         response.setObjectName("apisolidfirevolumesize");

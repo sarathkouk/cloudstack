@@ -16,6 +16,8 @@
 // under the License.
 (function($, cloudStack) {
   cloudStack.plugins = [
-    // 'testPlugin'
+    // 'testPlugin',
+    // 'sfSharedVolume',
+    // 'sfAdministration'
   ];
 }(jQuery, cloudStack));

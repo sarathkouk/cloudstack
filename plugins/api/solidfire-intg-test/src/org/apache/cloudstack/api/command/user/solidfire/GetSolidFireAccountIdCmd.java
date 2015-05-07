@@ -29,7 +29,7 @@ import org.apache.cloudstack.api.BaseCmd;
 import org.apache.cloudstack.api.Parameter;
 import org.apache.cloudstack.api.response.ApiSolidFireAccountIdResponse;
 import org.apache.cloudstack.context.CallContext;
-import org.apache.cloudstack.solidfire.ApiSolidFireService;
+import org.apache.cloudstack.solidfire.ApiSolidFireIntgTestService;
 import org.apache.cloudstack.storage.datastore.db.PrimaryDataStoreDao;
 import org.apache.cloudstack.storage.datastore.db.StoragePoolVO;
 
@@ -44,7 +44,7 @@ public class GetSolidFireAccountIdCmd extends BaseCmd {
     @Parameter(name = ApiConstants.STORAGE_ID, type = CommandType.STRING, description = "Storage Pool UUID", required = true)
     private String storagePoolUuid;
 
-    @Inject private ApiSolidFireService _apiSolidFireService;
+    @Inject private ApiSolidFireIntgTestService _apiSolidFireIntgTestService;
     @Inject private AccountDao _accountDao;
     @Inject private PrimaryDataStoreDao _storagePoolDao;
 
@@ -70,10 +70,12 @@ public class GetSolidFireAccountIdCmd extends BaseCmd {
 
     @Override
     public void execute() {
+        s_logger.info(GetSolidFireAccountIdCmd.class.getName() + ".execute invoked");
+
         Account account = _accountDao.findByUuid(accountUuid);
         StoragePoolVO storagePool = _storagePoolDao.findByUuid(storagePoolUuid);
 
-        ApiSolidFireAccountIdResponse response = _apiSolidFireService.getSolidFireAccountId(account.getId(), storagePool.getId());
+        ApiSolidFireAccountIdResponse response = _apiSolidFireIntgTestService.getSolidFireAccountId(account.getId(), storagePool.getId());
 
         response.setResponseName(getCommandName());
         response.setObjectName("apisolidfireaccountid");

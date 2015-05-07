@@ -54,7 +54,7 @@ import com.cloud.utils.component.AdapterBase;
 
 @Component
 @Local(value = APIChecker.class)
-public class ApiSolidFireServiceImpl extends AdapterBase implements APIChecker, ApiSolidFireService {
+public class ApiSolidFireIntgTestServiceImpl extends AdapterBase implements APIChecker, ApiSolidFireIntgTestService {
     // private static final Logger s_logger = Logger.getLogger(ApiSolidFireServiceImpl.class);
 
     @Inject private AccountDetailsDao _accountDetailsDao;

@@ -14,7 +14,16 @@
 // KIND, either express or implied.  See the License for the
 // specific language governing permissions and limitations
 // under the License.
-package org.apache.cloudstack.storage.datastore.driver;
+package org.apache.cloudstack.dataaccess.dao.solidfire;
 
-public class SolidFireSharedPrimaryDataStoreDriver extends CloudStackPrimaryDataStoreDriverImpl {
+import java.util.List;
+
+import org.apache.cloudstack.dataaccess.vo.solidfire.SfClusterVO;
+
+import com.cloud.utils.db.GenericDao;
+
+public interface SfClusterDao extends GenericDao<SfClusterVO, Long> {
+    SfClusterVO findByName(String name);
+
+    List<SfClusterVO> findByZoneId(long zoneId);
 }
